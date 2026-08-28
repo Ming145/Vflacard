@@ -1,0 +1,25 @@
+{
+  "name": "vflacard",
+  "version": "1.0.0",
+  "description": "综合闪卡工具，支持多种文本格式，采用艾宾浩斯遗忘曲线复习。",
+  "main": "main.ts",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production"
+  },
+  "keywords": [
+    "obsidian",
+    "flashcard",
+    "spaced-repetition"
+  ],
+  "author": "Vmsimab",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.14.8",
+    "builtin-modules": "^3.3.0",
+    "esbuild": "^0.21.5",
+    "obsidian": "^1.5.7",
+    "tslib": "^2.6.3",
+    "typescript": "^5.4.5"
+  }
+}

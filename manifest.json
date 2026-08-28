@@ -1,0 +1,9 @@
+{
+  "id": "vflacard",
+  "name": "Vflacard",
+  "version": "1.0.0",
+  "minAppVersion": "1.4.0",
+  "description": "综合闪卡工具，支持多种文本格式，采用艾宾浩斯遗忘曲线复习。",
+  "author": "Vmsimab",
+  "isDesktopOnly": false
+}

@@ -1,0 +1,259 @@
+/* ============ Vflacard 全局样式 ============ */
+
+.vflacard-container {
+    padding: 20px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* ============ 工具栏（搜索框 + 刷新按钮） ============ */
+
+.vflacard-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.vflacard-search-input {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 12px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 12px;
+    background: var(--background-primary);
+    color: var(--text-normal);
+    font-size: 14px;
+    outline: none;
+}
+
+.vflacard-search-input:focus {
+    border-color: var(--interactive-accent);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+.vflacard-refresh-btn {
+    flex-shrink: 0;
+}
+
+/* ============ 闪卡管理器视图 ============ */
+
+.vflacard-manager {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.vflacard-card-item {
+    background: var(--background-primary);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border: 1px solid var(--background-modifier-border);
+    transition: box-shadow 0.2s ease;
+}
+
+.vflacard-card-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+.vflacard-card-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.vflacard-card-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--text-normal);
+}
+
+.vflacard-card-meta {
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.vflacard-card-actions {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.vflacard-icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid var(--background-modifier-border);
+    background: var(--background-secondary);
+    color: var(--text-normal);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.vflacard-icon-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.vflacard-icon-btn:hover {
+    background: var(--background-modifier-hover);
+}
+
+.vflacard-icon-btn:active {
+    transform: scale(0.95);
+}
+
+.vflacard-icon-btn-delete {
+    color: var(--text-error);
+    border-color: var(--background-modifier-border);
+}
+
+.vflacard-icon-btn-delete:hover {
+    background: var(--background-modifier-error);
+    color: var(--text-on-accent);
+}
+
+/* ============ 今日复习视图 ============ */
+
+.vflacard-review {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 20px;
+    gap: 20px;
+}
+
+.vflacard-review-card {
+    background: var(--background-primary);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    padding: 32px;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--text-normal);
+    overflow-y: auto;
+    max-height: 70vh;
+}
+
+.vflacard-review-card .markdown-rendered {
+    text-align: center;
+}
+
+.vflacard-review-nav {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+}
+
+.vflacard-review-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    border: 1px solid var(--background-modifier-border);
+    background: var(--background-secondary);
+    color: var(--text-normal);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.vflacard-review-btn svg {
+    width: 22px;
+    height: 22px;
+}
+
+.vflacard-review-btn:hover {
+    background: var(--background-modifier-hover);
+}
+
+.vflacard-review-btn:active {
+    transform: scale(0.9);
+}
+
+.vflacard-review-progress {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.vflacard-review-empty {
+    text-align: center;
+    font-size: 16px;
+    color: var(--text-muted);
+    padding: 40px;
+}
+
+/* ============ 闪卡内容样式 ============ */
+
+.vflacard-content {
+    width: 100%;
+    word-break: break-word;
+}
+
+.vflacard-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.vflacard-content .callout {
+    margin: 8px 0;
+}
+
+.vflacard-content .math {
+    overflow-x: auto;
+}
+
+/* ============ 移动端适配 ============ */
+
+@media (max-width: 768px) {
+    .vflacard-card-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .vflacard-card-actions {
+        justify-content: flex-end;
+    }
+
+    .vflacard-review-card {
+        padding: 20px;
+        font-size: 16px;
+        width: 95%;
+    }
+
+    .vflacard-review-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .vflacard-review-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+}
