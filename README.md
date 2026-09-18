@@ -1,107 +1,119 @@
-# Vflacard - 综合闪卡工具
+# Vflacard - Comprehensive Flashcard Tool
 
-Vflacard 是一款基于 Obsidian 的智能闪卡插件，专为高效学习与记忆设计。它支持多种文本格式（Markdown、LaTeX、Callout、HTML、图片等），并采用艾宾浩斯遗忘曲线自动安排复习，让知识在最佳时间点被巩固。
+Vflacard is an intelligent flashcard plugin based on Obsidian, designed for efficient learning and memory. It supports multiple text formats (Markdown, LaTeX, Callout, HTML, images, etc.) and uses the Ebbinghaus forgetting curve to automatically schedule reviews, so knowledge is reinforced at the optimal time.
 
-## 功能特性
+## Features
 
-- **多格式支持**：闪卡内容可以是纯文本、Markdown、LaTeX 公式、Callout 块、HTML 标签、本地图片或图床图片，并通过 Obsidian 原生渲染引擎完美呈现。
-- **艾宾浩斯遗忘曲线**：内置经典间隔序列 `[1, 2, 4, 7, 15, 30, 60]` 天，根据复习计划自动推进，无需手动操作。
-- **灵活的创建方式**：
-  - 选中文本，一键创建单张闪卡。
-  - 使用 OpenAI 兼容 API 将长文本智能拆分为多张闪卡，且**严格保证卡片内容为原文连续子串**，不修改任何字符。
-- **闪卡管理器**：
-  - 按创建时间倒序排列（最新在最上），支持搜索、刷新。
-  - 每个卡片可编辑名称和内容、删除、调整创建时间（前后推一天）。
-  - 调整时间不会立即重新排序，保持视觉稳定性；点击刷新按钮后重新排序。
-- **今日复习**：
-  - 自动筛选 `nextReviewTime == 今天` 的卡片，支持前后翻页。
-  - 当天内浏览位置会记忆，跨天自动重置。
-  - 一键刷新复习列表。
-- **移动端兼容**：界面响应式设计，点按操作友好。
-- **数据本地存储**：所有数据保存在 `data.json`，随 Vault 同步，无需手动备份。
+- **Multi-format support**: Flashcard content can be plain text, Markdown, LaTeX formulas, Callout blocks, HTML tags, local images, or image-hosted images, and is rendered perfectly through Obsidian's native rendering engine.
+- **Ebbinghaus forgetting curve**: Built-in classic interval sequence `[1, 2, 4, 7, 15, 30, 60]` days, automatically advanced according to the review schedule, with no manual operation required.
+- **Flexible creation methods**:
+  - Select text and create a single flashcard with one click.
+  - Use an OpenAI-compatible API to intelligently split long text into multiple flashcards, and **strictly guarantee that card content is a contiguous substring of the original text**, without modifying any characters.
+- **Flashcard manager**:
+  - Sorted by creation time in descending order (newest at top), with search and refresh support.
+  - Each card's name and content can be edited, deleted, or its creation time adjusted (moved forward or backward by one day).
+  - Adjusting the time does not immediately reorder the list, preserving visual stability; the list is reordered after clicking the refresh button.
+- **Today's review**:
+  - Automatically filters cards with `nextReviewTime == today`, with previous/next page navigation.
+  - Browsing position is remembered within the same day and automatically reset across days.
+  - One-click refresh of the review list.
+- **Mobile compatibility**: Responsive interface design, friendly to tap operations.
+- **Local data storage**: All data is saved in `data.json` and synced with the Vault, with no manual backup required.
 
-## 插件增强功能
+## Plugin Enhancements
 
-以下为 Vflacard 提供的专属增强功能，旨在提升学习与管理的便捷性：
+The following are exclusive enhancements provided by Vflacard, designed to improve the convenience of learning and management:
 
-- **智能批量创建**：通过 OpenAI 兼容 API，将长文本自动拆分为多个逻辑独立的闪卡。系统会严格校验每个卡片内容是否原样出现在原文中，确保零篡改，仅保留有效片段。
-- **闪卡管理器搜索与刷新**：内置搜索框，支持按名称或内容实时过滤；刷新按钮可重新加载并排序，确保列表与实际数据同步。
-- **编辑名称与内容**：每个闪卡可独立编辑名称和内容，修改后所有打开的视图立即更新。
-- **创建时间微调**：支持将卡片的创建时间向前或向后推一天（保持复习进度不变），不会立即改变列表顺序，方便计划调整。
-- **复习进度记忆**：今日复习时翻页位置当天保留，跨天自动重置，无需手动记录。
-- **全局视图同步**：创建、删除、编辑闪卡后，所有已打开的闪卡管理器和复习视图自动刷新，无需手动关闭重开。
-- **API 配置灵活**：支持自定义 Base URL、API Key 和模型名，兼容任何 OpenAI 格式的服务（如 DeepSeek、通义千问等）。
+- **Intelligent batch creation**: Through an OpenAI-compatible API, long text is automatically split into multiple logically independent flashcards. The system strictly verifies whether each card's content appears verbatim in the original text, ensuring zero tampering and retaining only valid fragments.
+- **Flashcard manager search and refresh**: A built-in search box supports real-time filtering by name or content; the refresh button reloads and sorts the list, ensuring it stays in sync with the actual data.
+- **Edit name and content**: Each flashcard's name and content can be edited independently, and all open views update immediately after modification.
+- **Fine-tuning creation time**: Supports moving a card's creation time forward or backward by one day (keeping review progress unchanged); it does not immediately change the list order, making schedule adjustments convenient.
+- **Review progress memory**: During today's review, the page position is retained for the day and automatically reset across days, with no manual recording required.
+- **Global view synchronization**: After creating, deleting, or editing flashcards, all open flashcard managers and review views automatically refresh, with no need to manually close and reopen them.
+- **Flexible API configuration**: Supports custom Base URL, API Key, and model name, and is compatible with any OpenAI-format service (such as DeepSeek, Tongyi Qianwen, etc.).
 
-## 安装
+## Installation
 
-### 手动安装
-1. 下载插件压缩包（或直接从 GitHub Releases 获取 `main.js`、`manifest.json`、`styles.css`）。
-2. 将三个文件放入 Obsidian Vault 的 `.obsidian/plugins/vflacard/` 目录（若不存在请创建）。
-3. 重启 Obsidian，在“设置 → 第三方插件”中启用 **Vflacard**。
+### Manual Installation
 
-### 开发构建
-1. 克隆项目仓库。
-2. 运行 `npm install` 安装依赖。
-3. 运行 `npm run build` 生成 `main.js`（生产模式）或 `npm run dev` 监听文件变化。
-4. 将 `main.js`、`manifest.json`、`styles.css` 复制到插件目录。
+1. Download the plugin archive (or directly obtain `main.js`, `manifest.json`, and `styles.css` from GitHub Releases).
+2. Place the three files in the `.obsidian/plugins/vflacard/` directory of your Obsidian Vault (create it if it does not exist).
+3. Restart Obsidian, then enable **Vflacard** in "Settings → Community plugins".
 
-## 使用方法
+### Development Build
 
-### 命令与快捷键
-- **制成展示闪卡**：选中文本后执行，创建一个闪卡（首次复习日期 = 分配日期）。
-- **为选区创建多个闪卡**：选中文本后执行，调用 API 将文本拆分为多个闪卡。
-- **打开闪卡管理器**：查看、编辑所有闪卡。
-- **打开今日复习闪卡**：查看今日待复习的卡片。
+1. Clone the project repository.
+2. Run `npm install` to install dependencies.
+3. Run `npm run build` to generate `main.js` (production mode) or `npm run dev` to watch for file changes.
+4. Copy `main.js`, `manifest.json`, and `styles.css` to the plugin directory.
 
-以上命令可在“设置 → 热键”中自定义快捷键。左侧边栏（Ribbon）也提供两个快捷图标：创建闪卡和打开今日复习。
+## Usage
 
-### 设置
-- **每日新卡上限**：每天最多分配的新闪卡数量，超出部分顺延至后续日期。
-- **OpenAI 兼容 API 地址**：Base URL，例如 `https://api.openai.com/v1`。
-- **API Key**：您的 API 密钥。
-- **模型**：例如 `gpt-4o-mini`、`deepseek-chat` 等。
+### Commands and Shortcuts
 
-## 设计思路与巧思
+- **Make Display Flashcard**: Execute after selecting text to create a flashcard (first review date = assignment date).
+- **Create Multiple Flashcards for Selection**: Execute after selecting text to call the API and split the text into multiple flashcards.
+- **Open Flashcard Manager**: View and edit all flashcards.
+- **Open Today's Review Flashcards**: View cards due for review today.
 
-### 1. 艾宾浩斯遗忘曲线的自动推进
-我们采用**基于上次复习日期**的间隔序列，而非固定偏移。每次卡片“到期”后，即使您没有复习，系统也会在后台自动将其推进到下一个间隔日（例如：首次到期后自动变为 +1 天，第二次变为 +2 天，依次类推）。这实现了“不操作也照常推进”的约定，避免因主观遗忘导致计划混乱。该逻辑在插件启动和打开复习视图时都会执行，确保数据始终最新。
+The above commands can have custom shortcuts set in "Settings → Hotkeys". The left sidebar (Ribbon) also provides two shortcut icons: Create Flashcard and Open Today's Review.
 
-### 2. 每日新卡上限的分配算法
-- **核心原则**：从创建当天开始，寻找第一个未达到上限的日期，将新卡分配给该日期。
-- **修改上限后的动态调整**：若将上限调低，已分配的卡片不会“溢出”移除，新卡会寻找更远的有空位的日期；若调高，新卡会优先填补当日乃至后续日期的空缺。
-- **边界情况**：即使某天已经超出上限（例如之前分配过多），也不会删除任何卡片，新卡继续顺延，保证数据完整性。
+### Settings
 
-### 3. 智能拆分的“零修改”保障
-为满足“绝对不能修改任何半个字符”的要求，批量创建闪卡时：
-- AI 返回一个 JSON 字符串数组，每个元素被视为一个候选卡片。
-- 程序会**严格校验**每个候选字符串是否**原样出现在**原始选区文本中（使用 `String.includes()` 匹配）。
-- 只有通过校验的片段才会被创建为闪卡，无效片段会被忽略并记录在控制台。
-- 如果所有片段均无效，则拒绝创建并给出错误提示。这确保了内容永远不会被 AI 篡改。
+- **Daily New Card Limit**: The maximum number of new flashcards allocated per day; excess cards are deferred to subsequent dates.
+- **OpenAI-compatible API Base URL**: Base URL, for example `https://api.openai.com/v1`.
+- **API Key**: Your API key.
+- **Model**: For example `gpt-4o-mini`, `deepseek-chat`, etc.
 
-### 4. 管理器的视觉稳定性与排序
-- 默认按创建时间**降序**（最新在上），但在修改某张卡片的创建时间后，**不会立即移动位置**，以免打乱用户的视觉焦点。
-- 仅当点击刷新按钮或重新打开管理器时，才会重新执行排序。这种设计平衡了实时反馈与操作流畅性。
-- 搜索框支持实时过滤，但不会触发重新排序，保证过滤结果与当前顺序一致。
+## Design Philosophy and Clever Details
 
-### 5. 复习进度的记忆与重置
-- 当用户打开“今日复习”并翻页时，当前索引和日期会保存到 `data.json`。
-- 如果当天重新打开，会直接恢复到上次浏览的卡片。
-- 如果跨天打开，会自动重置索引为 0，并从当日第一张待复习卡片开始。
-- 所有数据在本地存储，不依赖云端，隐私安全。
+### 1. Automatic Advancement of the Ebbinghaus Forgetting Curve
 
-### 6. 视图实时刷新机制
-插件实现了 `refreshViews()` 方法，在创建、删除、编辑闪卡后，会同时刷新所有已打开的管理器和复习视图（通过 `workspace.getLeavesOfType` 定位实例并调用其 `render()` 方法）。这样用户无需手动关闭再重新打开窗口即可看到最新内容，提升交互体验。
+We use an interval sequence **based on the last review date**, rather than a fixed offset. Each time a card becomes "due", even if you do not review it, the system automatically advances it to the next interval day in the background (for example: after the first due date it automatically becomes +1 day, the second time +2 days, and so on). This implements the convention of "advancing as usual even without operation", avoiding schedule confusion caused by subjective forgetting. This logic is executed both when the plugin starts and when the review view is opened, ensuring the data is always up to date.
 
-## 数据存储结构
+### 2. Allocation Algorithm for the Daily New Card Limit
 
-数据保存在 `data.json`（由 Obsidian 自动管理）：
+- **Core principle**: Starting from the creation day, find the first date that has not reached the limit and assign the new card to that date.
+- **Dynamic adjustment after changing the limit**: If the limit is lowered, already allocated cards will not be "overflowed" and removed; new cards will look for a farther date with available slots. If the limit is raised, new cards will preferentially fill vacancies on the current day and subsequent dates.
+- **Edge cases**: Even if a certain day has already exceeded the limit (for example, too many were allocated previously), no cards will be deleted, and new cards continue to be deferred, ensuring data integrity.
+
+### 3. "Zero Modification" Guarantee for Intelligent Splitting
+
+To meet the requirement of "absolutely no modification of even half a character", when batch-creating flashcards:
+
+- The AI returns a JSON string array, and each element is treated as a candidate card.
+- The program **strictly verifies** whether each candidate string **appears verbatim in** the original selected text (using `String.includes()` matching).
+- Only fragments that pass verification are created as flashcards; invalid fragments are ignored and logged to the console.
+- If all fragments are invalid, creation is refused and an error message is given. This ensures the content is never tampered with by the AI.
+
+### 4. Visual Stability and Sorting in the Manager
+
+- By default, cards are sorted by creation time in **descending order** (newest at top), but after modifying a card's creation time, **its position is not immediately moved**, to avoid disrupting the user's visual focus.
+- Sorting is only re-executed when the refresh button is clicked or the manager is reopened. This design balances real-time feedback and operational smoothness.
+- The search box supports real-time filtering but does not trigger re-sorting, ensuring the filtered results remain consistent with the current order.
+
+### 5. Memory and Reset of Review Progress
+
+- When the user opens "Today's Review" and turns pages, the current index and date are saved to `data.json`.
+- If reopened on the same day, it directly restores to the last viewed card.
+- If opened across days, the index is automatically reset to 0, and it starts from the first card due for review that day.
+- All data is stored locally, does not rely on the cloud, and is private and secure.
+
+### 6. Real-time View Refresh Mechanism
+
+The plugin implements a `refreshViews()` method. After creating, deleting, or editing flashcards, it simultaneously refreshes all open manager and review views (by using `workspace.getLeavesOfType` to locate instances and calling their `render()` methods). This allows users to see the latest content without manually closing and reopening windows, improving the interactive experience.
+
+## Data Storage Structure
+
+Data is saved in `data.json` (automatically managed by Obsidian):
+
 ```json
 {
   "flashcards": [
     {
       "id": "card_...",
-      "name": "闪卡名称",
-      "content": "闪卡内容（Markdown）",
+      "name": "Flashcard name",
+      "content": "Flashcard content (Markdown)",
       "createTime": "2026-08-27",
       "nextReviewTime": "2026-08-27",
       "reviewCount": 0
@@ -120,31 +132,31 @@ Vflacard 是一款基于 Obsidian 的智能闪卡插件，专为高效学习与�
 }
 ```
 
-- `reviewCount` 表示已经过间隔推进的次数，用于计算下一次间隔。
-- 首次创建时 `nextReviewTime` 等于 `createTime`（当天即复习日），之后由自动推进逻辑更新。
+- `reviewCount` indicates the number of times interval advancement has occurred, used to calculate the next interval.
+- On first creation, `nextReviewTime` equals `createTime` (the same day is the review day); afterward it is updated by the automatic advancement logic.
 
-## 开发与构建
+## Development and Build
 
-项目使用 TypeScript 和 esbuild 构建，遵循 Obsidian 插件开发规范。代码结构清晰，包含 `main.ts`（核心逻辑）、`styles.css`（样式）、`manifest.json`（元数据）等文件。运行 `npm run build` 即可生成 `main.js`。
+The project is built with TypeScript and esbuild, following Obsidian plugin development conventions. The code structure is clear and includes `main.ts` (core logic), `styles.css` (styles), `manifest.json` (metadata), and other files. Run `npm run build` to generate `main.js`.
 
-## 常见问题
+## FAQ
 
-**Q: 为什么批量创建闪卡有时没有返回任何卡片？**  
-A: AI 可能返回了非原文字符串，校验失败。请检查 API 返回的 JSON 格式，或确认文本是否足够清晰可拆分。
+**Q: Why does batch flashcard creation sometimes return no cards?**  
+A: The AI may have returned strings that are not from the original text, causing verification to fail. Please check the JSON format returned by the API, or confirm that the text is clear enough to be split.
 
-**Q: 修改上限后，新卡如何分配？**  
-A: 新卡从当前日期开始，依次寻找第一个未达到新上限的日期进行分配，已分配的卡片不会移动。
+**Q: After changing the limit, how are new cards allocated?**  
+A: New cards start from the current date and search in order for the first date that has not reached the new limit, then are allocated there. Already allocated cards do not move.
 
-**Q: 复习进度为何第二天会重置？**  
-A: 每天应复习的卡片集合不同，进度记录绑定于特定日期，跨天自动清零是合理行为。
+**Q: Why does review progress reset the next day?**  
+A: The set of cards due for review differs each day. Progress records are bound to a specific date, so automatically resetting across days is reasonable behavior.
 
-**Q: 移动端支持如何？**  
-A: 插件完全兼容移动端，界面通过媒体查询适配小屏幕，所有操作均可用手指点击完成。
+**Q: How is mobile support?**  
+A: The plugin is fully compatible with mobile. The interface adapts to small screens through media queries, and all operations can be completed with finger taps.
 
-## 更新日志
+## Changelog
 
-- **v1.0.0**：初始版本，支持单卡创建、管理器、今日复习、设置上限、批量创建（AI拆分）、搜索与刷新功能。
+- **v1.0.0**: Initial version, supporting single-card creation, manager, today's review, setting limits, batch creation (AI splitting), search, and refresh functions.
 
 ---
 
-Vflacard 旨在让学习过程更加专注和高效，如有问题或建议，欢迎反馈。
+Vflacard aims to make the learning process more focused and efficient. If you have any questions or suggestions, feedback is welcome.
