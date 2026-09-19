@@ -2,7 +2,7 @@
   "id": "vflacard",
   "name": "Vflacard",
   "version": "1.0.0",
-  "minAppVersion": "1.4.0",
+  "minAppVersion": "1.13.0",
   "description": "A comprehensive flashcard tool that supports multiple text formats, uses official rendering, and incorporates the Ebbinghaus forgetting curve for review.",
   "author": "Vmsimab",
   "isDesktopOnly": false
